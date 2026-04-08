@@ -12,7 +12,9 @@ protected:
     TextInput* m_input = nullptr;
 
     std::string noteKey() const {
-        return "note-" + std::to_string(m_level ? m_level->m_levelID.value() : 0);
+    if (m_level && m_level->m_levelID.value() > 0)
+        return "note-" + std::to_string(m_level->m_levelID.value());
+        return "note-editor-" + std::to_string(reinterpret_cast<std::uintptr_t>(m_level));
     }
 
     std::string dateKey() const {
@@ -55,7 +57,7 @@ protected:
         m_mainLayer->addChild(dateLabel);
 
         m_input = TextInput::create(size.width - 20, "type anything...", "chatFont.fnt");
-        m_input->setCommonFilter(geode::prelude::CommonFilter::Any);
+        m_input->setCommonFilter(CommonFilter::Any);
         m_input->setPosition({size.width / 2, size.height / 2});
         m_input->setMaxCharCount(200);
 
