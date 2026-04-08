@@ -12,4 +12,4 @@ works in the **editor** and on **online levels**, so your notes are always there
 
 **how to use:** open a level → click the button → start typing → done  
 
-*Also, huge thanks to ArcticWoof for helping me add special characters to the textbox!*
+*also, huge thanks to ArcticWoof for helping me add special characters to the textbox and axiom-s25u helping me release the mod!*
