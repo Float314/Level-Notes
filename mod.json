@@ -12,6 +12,7 @@
 	"developer": "yousseflmao",
 	"description": "Add notes to levels!",
 	"links": {
+		"source": "https://github.com/yousseflmao/Level-Notes",
 		"community": "https://discord.gg/TfE5ghvdCw"
 	},
 	"dependencies": {
