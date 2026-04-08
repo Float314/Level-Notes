@@ -11,14 +11,27 @@ protected:
     GJGameLevel* m_level = nullptr;
     TextInput* m_input = nullptr;
 
+        std::string getEditorKey() const { // should fix editor note problem
+    if (!m_level) return "editor-unknown";
+
+    if (m_level->m_levelString.empty())
+        return "editor-fallback";
+
+    std::hash<std::string> hasher;
+    size_t hash = hasher(m_level->m_levelString);
+
+    return "editor-" + std::to_string(hash);
+    }
+
+
     std::string noteKey() const {
     if (m_level && m_level->m_levelID.value() > 0)
         return "note-" + std::to_string(m_level->m_levelID.value());
-        return "note-editor-" + std::to_string(reinterpret_cast<std::uintptr_t>(m_level));
+        return "note-" + getEditorKey();
     }
 
     std::string dateKey() const {
-        return "date-" + std::to_string(m_level ? m_level->m_levelID.value() : 0);
+        return "date-" + getEditorKey();
     }
 
     static std::string getDate() {

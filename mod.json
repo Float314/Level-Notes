@@ -6,8 +6,8 @@
 		"mac": "2.2081",
 		"ios": "2.2081"
 	},
-	"id": "yousseflmao.level-info",
-	"name": "Level Info",
+	"id": "yousseflmao.level-notes",
+	"name": "Level Notes",
 	"version": "v1.0.0",
 	"developer": "yousseflmao",
 	"description": "Add notes to levels!",
