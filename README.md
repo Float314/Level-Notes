@@ -1,23 +1,15 @@
 # LevelInfo
-This is where she makes a mod.
-
 <img src="logo.png" width="150" alt="the mod's logo" />
 
-*Update logo.png to change your mod's icon (please)*
+# <cd>**Level Notes**</cd>
 
-## Getting started
-We recommend heading over to [the getting started section on our docs](https://docs.geode-sdk.org/getting-started/) for useful info on what to do next.
+**Level Notes** lets you add notes to **levels**.  
+works in the **editor** and on **online levels**, so your notes are always there.  
 
-## Build instructions
-For more info, see [our docs](https://docs.geode-sdk.org/getting-started/create-mod#build)
-```sh
-# Assuming you have the Geode CLI set up already
-geode build
-```
+- <co>small, unobtrusive UI</co> – sits in the bottom right  
+- <cy>type anything</cy> – reminders, tips, or whatever you need  
+- <cg>stays with the level</cg> – open it later, your notes are still there  
 
-# Resources
-* [Geode SDK Documentation](https://docs.geode-sdk.org/)
-* [Geode SDK Source Code](https://github.com/geode-sdk/geode/)
-* [Geode CLI](https://github.com/geode-sdk/cli)
-* [Bindings](https://github.com/geode-sdk/bindings/)
-* [Dev Tools](https://github.com/geode-sdk/DevTools)
+**how to use:** open a level → click the button → start typing → done  
+
+*Also, huge thanks to ArcticWoof for helping me add special characters to the textbox!*
