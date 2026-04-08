@@ -23,15 +23,17 @@ protected:
         std::time_t now = std::time(nullptr);
         char buf[32];
         std::tm tm{};
-    localtime_s(&tm, &now);
-    std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M", &tm);
-
+    #if defined(_WIN32)
+        localtime_s(&tm, &now);
+    #else
+        localtime_r(&now, &tm);
+    #endif
+        std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M", &tm);
         return buf;
     }
 
     bool init(GJGameLevel* level) {
         m_level = level;
-
         if (!Popup::init(260.f, 150.f))
             return false;
 
@@ -48,12 +50,12 @@ protected:
 
         auto dateLabel = CCLabelBMFont::create(("added: " + created).c_str(), "bigFont.fnt");
         dateLabel->setScale(0.3f);
-        dateLabel->setAnchorPoint({1, 0}); // bottom-right
-        dateLabel->setPosition({size.width - 10, 10}); // 10px padding from bottom-right
+        dateLabel->setAnchorPoint({1, 0});
+        dateLabel->setPosition({size.width - 10, 10});
         m_mainLayer->addChild(dateLabel);
 
         m_input = TextInput::create(size.width - 20, "type anything...", "chatFont.fnt");
-        m_input->setCommonFilter(CommonFilter::Any);
+        m_input->setCommonFilter(geode::prelude::CommonFilter::Any);
         m_input->setPosition({size.width / 2, size.height / 2});
         m_input->setMaxCharCount(200);
 
@@ -63,7 +65,6 @@ protected:
         m_input->setCallback([this, created](std::string const& text) {
             Mod::get()->setSavedValue<std::string>(noteKey(), text);
             Mod::get()->setSavedValue<std::string>(dateKey(), created);
-
             log::info("saved note ({} chars)", text.size());
         });
 
@@ -78,7 +79,7 @@ protected:
             this,
             menu_selector(LevelNotesPopup::onClear)
         );
-        clearBtn->setPosition({size.width / 2, 25}); // 25px from bottom
+        clearBtn->setPosition({size.width / 2, 25});
 
         auto menu = CCMenu::create();
         menu->setPosition({0, 0});
@@ -102,7 +103,6 @@ public:
     void onClear(CCObject*) {
         if (m_input) m_input->setString("", true);
         Mod::get()->setSavedValue<std::string>(noteKey(), "");
-
         log::warn("note cleared");
     }
 };
@@ -127,7 +127,6 @@ public:
 static void addButton(CCNode* layer, GJGameLevel* level, float yOffset) {
     auto size = CCDirector::sharedDirector()->getVisibleSize();
 
-    // proper GD button (not text-only)
     auto spr = ButtonSprite::create("notes");
     spr->setScale(0.4f);
 
@@ -146,7 +145,6 @@ static void addButton(CCNode* layer, GJGameLevel* level, float yOffset) {
     auto menu = CCMenu::create();
     menu->setPosition({0, 0});
     menu->addChild(btn);
-
     layer->addChild(menu, 9999);
 }
 
@@ -161,7 +159,7 @@ class $modify(LevelInfoLayer) {
 class $modify(EditLevelLayer) {
     bool init(GJGameLevel* level) {
         if (!EditLevelLayer::init(level)) return false;
-        addButton(this, level, 6.f); // moved down
+        addButton(this, level, 6.f);
         return true;
     }
 };
