@@ -1,3 +1,8 @@
+# v1.0.4 (2026-04-09)
+- fixed notes button placement using existing menus
+- removed hardcoded positions and z-order
+- better compatibility with other mods
+
 # v1.0.3 (2026-04-09)
 - fixed editor level note saving with stable editor ids (cvolton.level-id-api)
 - removed unreliable hashing-based keys

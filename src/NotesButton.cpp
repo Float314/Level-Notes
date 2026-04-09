@@ -22,34 +22,28 @@ public:
     }
 };
 
-static void addButton(CCNode* layer, GJGameLevel* level, float yOffset) {
-    auto size = CCDirector::sharedDirector()->getVisibleSize();
+static void addButton(cocos2d::CCMenu* menu, GJGameLevel* level) {
+    if (!menu) return;
 
     auto spr = ButtonSprite::create("notes");
     spr->setScale(0.4f);
 
     auto handler = NotesHandler::create(level);
-    layer->addChild(handler);
-
     auto btn = CCMenuItemSpriteExtra::create(
         spr,
         handler,
         menu_selector(NotesHandler::open)
     );
 
-    btn->setAnchorPoint({1, 0});
-    btn->setPosition({size.width - 10, yOffset});
-
-    auto menu = CCMenu::create();
-    menu->setPosition({0, 0});
+    btn->setID("level-notes-button"_spr);
     menu->addChild(btn);
-    layer->addChild(menu, 9999);
+    menu->updateLayout();
 }
 
 class $modify(LevelInfoLayer) {
     bool init(GJGameLevel* level, bool challenge) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
-        addButton(this, level, 12.f);
+        addButton(this->m_playBtnMenu, level);
         return true;
     }
 };
@@ -57,7 +51,7 @@ class $modify(LevelInfoLayer) {
 class $modify(EditLevelLayer) {
     bool init(GJGameLevel* level) {
         if (!EditLevelLayer::init(level)) return false;
-        addButton(this, level, 6.f);
+        addButton(this->m_buttonMenu, level);
         return true;
     }
 };
