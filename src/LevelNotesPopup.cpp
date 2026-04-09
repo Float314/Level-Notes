@@ -1,27 +1,22 @@
 #include "LevelNotesPopup.hpp"
+#include <cvolton.level-id-api/include/EditorIDs.hpp>
 
-std::string LevelNotesPopup::getEditorKey() const {
-    if (!m_level) return "editor-unknown";
+std::string LevelNotesPopup::getLevelKey() const {
+    if (!m_level) return "unknown";
 
-    if (m_level->m_levelString.empty())
-        return "editor-fallback";
+    if (m_level->m_levelID.value() > 0)
+        return "online-" + geode::utils::numToString(m_level->m_levelID.value());
 
-    std::hash<std::string> hasher;
-    size_t hash = hasher(m_level->m_levelString);
-
-    return "editor-" + geode::utils::numToString(hash);
+    auto editorId = EditorIDs::getID(m_level);
+    return "editor-" + geode::utils::numToString(editorId);
 }
 
 std::string LevelNotesPopup::noteKey() const {
-    if (m_level && m_level->m_levelID.value() > 0)
-        return "note-" + geode::utils::numToString(m_level->m_levelID.value());
-    return "note-" + getEditorKey();
+    return "note-" + getLevelKey();
 }
 
 std::string LevelNotesPopup::dateKey() const {
-    if (m_level && m_level->m_levelID.value() > 0)
-        return "date-" + geode::utils::numToString(m_level->m_levelID.value());
-    return "date-" + getEditorKey();
+    return "date-" + getLevelKey();
 }
 
 std::string LevelNotesPopup::getDate() {

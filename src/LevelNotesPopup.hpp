@@ -10,7 +10,7 @@ protected:
     GJGameLevel* m_level = nullptr;
     TextInput* m_input = nullptr;
 
-    std::string getEditorKey() const;
+    std::string getLevelKey() const;
     std::string noteKey() const;
     std::string dateKey() const;
     static std::string getDate();
