@@ -3,7 +3,7 @@
 <br>
 <img src="https://img.shields.io/badge/Language-C%2B%2B-blue" alt="Static Badge">
 <img src="https://img.shields.io/github/actions/workflow/status/yousseflmao/Level-notes/multi-platform.yml" alt="Build Status">
-![Static Badge | Discord Server](https://img.shields.io/badge/Discord_Server-Click_here-8A2BE2?logo=discord&link=https%3A%2F%2Fdiscord.gg%2FUPpjvVvWqJ)
+[Static Badge | Discord Server](https://img.shields.io/badge/Discord_Server-Click_here-8A2BE2?logo=discord&link=https%3A%2F%2Fdiscord.gg%2FUPpjvVvWqJ)
 
 
 # <cd>**Level Notes**</cd>
