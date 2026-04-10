@@ -8,7 +8,7 @@
 	},
 	"id": "yousseflmao.level-notes",
 	"name": "Level Notes",
-	"version": "v1.0.5",
+	"version": "v1.0.6",
 	"developer": "yousseflmao",
 	"description": "Add notes to levels!",
 	"links": {
@@ -16,6 +16,7 @@
 		"community": "https://discord.gg/TfE5ghvdCw"
 	},
 	"dependencies": {
-		"cvolton.level-id-api": "v2.0.0"
+		"cvolton.level-id-api": "v2.0.0",
+		"geode.node-ids": "1.23.3"
 	}
 }

@@ -1,3 +1,7 @@
+# v1.0.6 (2026-04-10)
+- where's node ids again? (sorry erymanthus)
+- 
+
 # v1.0.5 (2026-04-10)
 - removed incorrect screen-based positioning
 

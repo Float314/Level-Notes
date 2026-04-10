@@ -22,7 +22,10 @@ public:
 };
 
 static void addButton(CCMenu* menu, GJGameLevel* level) {
-    if (!menu) return;
+    if (!menu || !level) return;
+
+    if (menu->getChildByID("level-notes-button"_spr))
+        return;
 
     auto spr = ButtonSprite::create("notes");
     spr->setScale(0.4f);
@@ -36,13 +39,14 @@ static void addButton(CCMenu* menu, GJGameLevel* level) {
 
     btn->setID("level-notes-button"_spr);
 
-    auto size = menu->getContentSize();
-
-    btn->setAnchorPoint({1.f, 0.f});
-    btn->setPosition({
-        size.width - 8.f,
-        8.f
-    });
-
     menu->addChild(btn);
+    menu->updateLayout();
 }
+
+class $modify(EditLevelLayer) {
+    bool init(GJGameLevel* level) {
+        if (!EditLevelLayer::init(level)) return false;
+        addButton(this->m_buttonMenu, level);
+        return true;
+    }
+};
