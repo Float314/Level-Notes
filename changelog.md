@@ -4,6 +4,7 @@
 - call updateLayout() after adding button
 - removed manual positioning (use menu layout instead)
 - ensure only one button is added in editor
+- Added License
 
 # v1.0.5 (2026-04-10)
 - removed incorrect screen-based positioning
