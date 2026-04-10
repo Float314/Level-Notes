@@ -1,4 +1,4 @@
-# v1.0.5 (2026-04-09)
+# v1.0.5 (2026-04-10)
 - removed incorrect screen-based positioning
 
 # v1.0.4 (2026-04-09)
