@@ -1,3 +1,6 @@
+# v1.0.5 (2026-04-09)
+- removed incorrect screen-based positioning
+
 # v1.0.4 (2026-04-09)
 - fixed notes button placement using existing menus
 - removed hardcoded positions and z-order

@@ -1,5 +1,4 @@
 #include <Geode/Geode.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
 #include <Geode/modify/EditLevelLayer.hpp>
 #include "LevelNotesPopup.hpp"
 
@@ -7,7 +6,7 @@ using namespace geode::prelude;
 
 class NotesHandler : public CCNode {
 protected:
-    GJGameLevel* m_level;
+    GJGameLevel* m_level = nullptr;
 
 public:
     static NotesHandler* create(GJGameLevel* level) {
@@ -22,7 +21,7 @@ public:
     }
 };
 
-static void addButton(cocos2d::CCMenu* menu, GJGameLevel* level) {
+static void addButton(CCMenu* menu, GJGameLevel* level) {
     if (!menu) return;
 
     auto spr = ButtonSprite::create("notes");
@@ -36,22 +35,14 @@ static void addButton(cocos2d::CCMenu* menu, GJGameLevel* level) {
     );
 
     btn->setID("level-notes-button"_spr);
+
+    auto size = menu->getContentSize();
+
+    btn->setAnchorPoint({1.f, 0.f});
+    btn->setPosition({
+        size.width - 8.f,
+        8.f
+    });
+
     menu->addChild(btn);
-    menu->updateLayout();
 }
-
-class $modify(LevelInfoLayer) {
-    bool init(GJGameLevel* level, bool challenge) {
-        if (!LevelInfoLayer::init(level, challenge)) return false;
-        addButton(this->m_playBtnMenu, level);
-        return true;
-    }
-};
-
-class $modify(EditLevelLayer) {
-    bool init(GJGameLevel* level) {
-        if (!EditLevelLayer::init(level)) return false;
-        addButton(this->m_buttonMenu, level);
-        return true;
-    }
-};
